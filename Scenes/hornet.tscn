@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://c6nyjggvkhay2"]
+
+[ext_resource type="Script" uid="uid://d1uffkubktqhj" path="res://Scripts/hornet.gd" id="1_ee0bo"]
+[ext_resource type="Texture2D" uid="uid://b7hc718jsrp5j" path="res://Images/HornetFrames.png" id="2_m26km"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhev1"]
+atlas = ExtResource("2_m26km")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5g3n"]
+atlas = ExtResource("2_m26km")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41314"]
+atlas = ExtResource("2_m26km")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5q07"]
+atlas = ExtResource("2_m26km")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40bbm"]
+atlas = ExtResource("2_m26km")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qblt3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhev1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5g3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41314")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5q07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40bbm")
+}],
+"loop": true,
+"name": &"flipLtoR",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40bbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5q07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41314")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5g3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhev1")
+}],
+"loop": true,
+"name": &"flipRtoL",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ee0bo"]
+radius = 157.204
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m26km"]
+radius = 7.0
+
+[node name="Hornet" type="Node2D"]
+z_index = 1
+script = ExtResource("1_ee0bo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qblt3")
+animation = &"flipRtoL"
+
+[node name="HuntZone" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HuntZone"]
+shape = SubResource("CircleShape2D_ee0bo")
+
+[node name="StingZone" type="Area2D" parent="." groups=["hornet", "overlap"]]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StingZone"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_m26km")
+
+[connection signal="area_exited" from="HuntZone" to="." method="_on_hunt_zone_area_exited"]
+[connection signal="body_entered" from="HuntZone" to="." method="_on_hunt_zone_body_entered"]
+[connection signal="body_exited" from="HuntZone" to="." method="_on_hunt_zone_body_exited"]
+[connection signal="area_entered" from="StingZone" to="." method="_on_sting_zone_area_entered"]
+[connection signal="body_entered" from="StingZone" to="." method="_on_sting_zone_body_entered"]

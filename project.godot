@@ -13,11 +13,18 @@ config_version=5
 config/name="GMTKGameJam"
 run/main_scene="uid://d2f3w61s8ym8t"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [autoload]
 
-PlayerAnimations="*res://Scripts/PlayerAnimations.gd"
+Globals="*res://Scripts/Globals.gd"
+
+[global_group]
+
+overlap=""
+
+[gui]
+
+theme/custom_font="uid://cl1ppq5evf8ug"
 
 [input]
 

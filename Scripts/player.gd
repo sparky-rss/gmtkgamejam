@@ -1,5 +1,10 @@
 extends RigidBody2D
 
+signal teleport_left_to_right
+signal teleport_right_to_left
+
+var hornets_to_spawn : int = 0
+
 var scoring : bool
 var max_horiz_speed : int = 1000
 var max_vert_speed : int = 500
@@ -18,10 +23,12 @@ var incoming_velocity : float = 0.0
 var exit_velocity : float
 
 func _ready() -> void:
+	Globals.player = self
 	player_sprite = get_node("Sprite2D")
 	player_sprite.animation = "flipRtoL"
 	player_sprite.frame = 4
 	state = "going_left"
+	spawn_hornets()
 	
 func _physics_process(_delta: float) -> void:
 	if looping:
@@ -37,15 +44,19 @@ func _physics_process(_delta: float) -> void:
 				scoring = false
 			if loop_direction == 1:
 				state = "going_right"
-				exit_velocity = max(250, incoming_velocity)
+				exit_velocity = max(150, incoming_velocity)
 			else:
 				state = "going_left"
-				exit_velocity = min(-250, incoming_velocity)
-			self.linear_velocity = Vector2(exit_velocity, -(abs(exit_velocity)))
+				exit_velocity = min(-150, incoming_velocity)
+			self.linear_velocity = Vector2(exit_velocity, -100)
 		return
+	if Globals.unscored_flowers <= 99 and !Globals.you_win and !Globals.game_over:
+		Globals.you_win = true
+		var HUD_node = get_parent().get_node("HUD")
+		HUD_node.you_win()
 			
 func _process(_delta):
-	if Input.is_action_just_pressed("Loop") and state != "loop":
+	if Input.is_action_just_pressed("Loop") and state != "loop" and !Globals.game_over:
 		var state_to_return_to : String
 		if player_sprite.animation == "flipLtoR":
 			state_to_return_to = "going_right"
@@ -53,15 +64,15 @@ func _process(_delta):
 			state_to_return_to = "going_left"
 		state = "loop"
 		execute_loop(state_to_return_to, self.linear_velocity.x)
-	if Input.is_action_just_pressed("Flutter") and state != "loop":
+	if Input.is_action_just_pressed("Flutter") and state != "loop" and !Globals.game_over:
 		self.apply_central_force(Vector2(0,-350))
-	if Input.is_action_pressed("GoLeft") and state != "loop":
+	if Input.is_action_pressed("GoLeft") and state != "loop" and !Globals.game_over:
 		self.apply_central_force(Vector2(-10,0))
 		if state == "going_right":
 			state = "turning_left"
 			play_player_animation("flipRtoL", player_sprite)
 			
-	if Input.is_action_pressed("GoRight") and state != "loop":
+	if Input.is_action_pressed("GoRight") and state != "loop" and !Globals.game_over:
 		self.apply_central_force(Vector2(10,0))
 		if state == "going_left":
 			state = "turning_right"
@@ -69,8 +80,10 @@ func _process(_delta):
 	
 	if self.position.x > 3000:
 		self.position.x = -3000
+		teleport_right_to_left.emit()
 	if self.position.x < -3000:
 		self.position.x = 3000
+		teleport_left_to_right.emit()
 	if self.position.y > 1000:
 		self.position.y = 1000
 		self.apply_central_force(Vector2(0,-350))
@@ -122,3 +135,22 @@ func process_completed_animation():
 		state = "going_left"
 	if state == "turning_right":
 		state = "going_right"
+
+func spawn_hornets() -> void:
+	hornets_to_spawn = Globals.level - 1
+	var hornets_spawned = 0
+	while hornets_spawned < hornets_to_spawn:
+		var query := PhysicsPointQueryParameters2D.new()
+		query.collide_with_areas = true
+		var vector_y = randi_range(500, 999)
+		var vector_y_randomizer = 2 * (randi_range(0,1) - 0.5)
+		var vector_x = randi_range(1000, 3000)
+		var vector_x_randomizer = 2 * (randi_range(0,1) - 0.5)
+		query.position = Vector2(vector_x * vector_x_randomizer, vector_y * vector_y_randomizer)
+		var result := get_world_2d().direct_space_state.intersect_point(query)
+		if result == []:
+			hornets_spawned += 1
+			print("hornet ",hornets_spawned," spawned at ",query.position)
+			var new_hornet: Node = Globals.hornet_scene.instantiate()
+			get_parent().add_child.call_deferred(new_hornet)
+			new_hornet.global_position = query.position

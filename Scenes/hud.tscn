@@ -1,0 +1,222 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8wf1pgjfvxpp"]
+
+[ext_resource type="Script" uid="uid://dr51ofsq5v07v" path="res://Scripts/HUD.gd" id="1_fccik"]
+[ext_resource type="FontFile" uid="uid://cl1ppq5evf8ug" path="res://Bitcount_Prop_Single/BitcountPropSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="2_bjfho"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_fccik")
+
+[node name="FlowerCount" type="Label" parent="."]
+z_index = 1
+offset_left = 8.0
+offset_right = 279.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 32
+text = "Flowers Left: 100"
+
+[node name="Level" type="Label" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_right = 56.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 32
+text = "Level: 1"
+
+[node name="YouWin" type="RichTextLabel" parent="."]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -121.0
+offset_right = 177.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_bjfho")
+bbcode_enabled = true
+text = "Great Job!"
+
+[node name="Timer" type="Timer" parent="YouWin"]
+one_shot = true
+
+[node name="YouLose" type="RichTextLabel" parent="."]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(200, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = -121.0
+offset_right = 130.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_bjfho")
+bbcode_enabled = true
+text = "Bad Job!"
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="LossTimer" type="Timer" parent="YouLose"]
+one_shot = true
+
+[node name="TimeTaken" type="RichTextLabel" parent="."]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -302.0
+offset_top = 67.0
+offset_right = 328.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_bjfho")
+bbcode_enabled = true
+text = "Great Job!"
+horizontal_alignment = 1
+
+[node name="ButtonTimer" type="Timer" parent="TimeTaken"]
+one_shot = true
+
+[node name="FlowersPollinated" type="RichTextLabel" parent="."]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -302.0
+offset_top = 67.0
+offset_right = 328.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_bjfho")
+bbcode_enabled = true
+text = "Great Job!"
+horizontal_alignment = 1
+
+[node name="RetryTimer" type="Timer" parent="FlowersPollinated"]
+one_shot = true
+
+[node name="TimerLabel" type="Label" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 257.0
+offset_right = 504.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 32
+text = "Time Remaning:"
+horizontal_alignment = 2
+
+[node name="TimeLeft" type="Label" parent="."]
+z_index = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -271.0
+offset_bottom = 39.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 32
+text = "100"
+horizontal_alignment = 2
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 300.0
+autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 40)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0.733333, 0.823529, 0, 1)
+
+[node name="NextLevelButton" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -31.0
+offset_right = 45.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 36
+text = "Next Level"
+
+[node name="RetryButton" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -163.5
+offset_top = -52.0
+offset_right = -36.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 36
+text = "Retry"
+
+[node name="QuitButton" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 36.5
+offset_top = -52.0
+offset_right = 163.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 36
+text = "Quit"
+
+[connection signal="timeout" from="YouWin/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="YouLose/LossTimer" to="." method="_on_loss_timer_timeout"]
+[connection signal="timeout" from="TimeTaken/ButtonTimer" to="." method="_on_button_timer_timeout"]
+[connection signal="timeout" from="FlowersPollinated/RetryTimer" to="." method="_on_retry_timer_timeout"]
+[connection signal="pressed" from="NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
