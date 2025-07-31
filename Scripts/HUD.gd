@@ -3,12 +3,28 @@ extends CanvasLayer
 func _ready() -> void:
 	get_node("Level").text = str("Level: ", Globals.level)
 	Globals.global_timer = get_node("GameTimer")
+	get_node("MenuBackground/VBoxContainer/MasterVolume").value = SoundManager.master_volume
+	get_node("MenuBackground/VBoxContainer/MusicVolume").value = SoundManager.music_volume
+	get_node("MenuBackground/VBoxContainer/SFXVolume").value = SoundManager.sfx_volume
 
 func _process(_delta: float) -> void:
 	get_node("FlowerCount").text = str("Flowers Left: ", Globals.unscored_flowers)
 	get_node("TimeLeft").text = str("%0.0f" % get_node("GameTimer").time_left)
+	if Input.is_action_just_pressed("Escape Menu") and !get_node("MenuBackground").visible:
+		get_node("MenuBackground").show()
+		get_tree().paused = true
+		var retry_node = get_node("MenuBackground/ResumeButton")
+		var quit_node = get_node("MenuBackground/QuitButton")
+		style_that_box(retry_node)
+		style_that_box(quit_node)
+	elif Input.is_action_just_pressed("Escape Menu") and get_node("MenuBackground").visible:
+		get_node("MenuBackground").hide()
+		get_tree().paused = false
 
 func you_win() -> void:
+	Globals.player.stop_sound("Collect")
+	Globals.player.stop_sound("BGM")
+	Globals.player.play_sound("YouWin")
 	get_node("GameTimer").paused = true
 	var you_win_node = get_node("YouWin")
 	you_win_node.show()
@@ -16,6 +32,8 @@ func you_win() -> void:
 	get_node("YouWin/Timer").start()
 
 func you_lose(cause : String) -> void:
+	Globals.player.stop_sound("BGM")
+	Globals.player.play_sound("YouLose")
 	get_node("GameTimer").paused = true
 	var you_lose_node = get_node("YouLose")
 	you_lose_node.show()
@@ -64,3 +82,18 @@ func _on_retry_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_master_volume_value_changed(value: float) -> void:
+	SoundManager.set_master_volume(value)
+
+func _on_music_volume_value_changed(value: float) -> void:
+	SoundManager.set_music_volume(value)
+
+func _on_sfx_volume_value_changed(value: float) -> void:
+	SoundManager.set_sfx_volume(value)
+
+
+func _on_resume_button_pressed() -> void:
+	get_node("MenuBackground").hide()
+	get_tree().paused = false

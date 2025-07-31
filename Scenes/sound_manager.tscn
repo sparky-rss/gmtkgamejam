@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://bq2w5h0x5ehxm"]
+
+[ext_resource type="Script" uid="uid://k50i2o3ey5ub" path="res://Scripts/SoundManager.gd" id="1_25ke0"]
+[ext_resource type="AudioStream" uid="uid://bor7y4qc6m7qu" path="res://Sounds/Bassline.wav" id="2_tox07"]
+[ext_resource type="AudioStream" uid="uid://dt1nc8cb7itjm" path="res://Sounds/My_Song (1).mp3" id="3_1ohty"]
+[ext_resource type="AudioStream" uid="uid://bdgacvg0n0mgi" path="res://Sounds/hornet_aggro.mp3" id="3_tox07"]
+[ext_resource type="AudioStream" uid="uid://dy0prgvjhwty3" path="res://Sounds/Win.wav" id="5_08tfe"]
+[ext_resource type="AudioStream" uid="uid://ctd7i8y6xq54y" path="res://Sounds/Lose.wav" id="6_08tfe"]
+
+[node name="SoundManager" type="Node"]
+script = ExtResource("1_25ke0")
+
+[node name="Collect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tox07")
+bus = &"Sfx"
+
+[node name="Aggro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_tox07")
+bus = &"Sfx"
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1ohty")
+bus = &"Music"
+parameters/looping = true
+
+[node name="YouWin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_08tfe")
+bus = &"Music"
+
+[node name="YouLose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_08tfe")
+bus = &"Music"

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bevu1b1oltmu5"
+path="res://.godot/imported/My_Song (short).mp3-24b07b51c554831740fcd2e8992ee09b.mp3str"
+
+[deps]
+
+source_file="res://Sounds/My_Song (short).mp3"
+dest_files=["res://.godot/imported/My_Song (short).mp3-24b07b51c554831740fcd2e8992ee09b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

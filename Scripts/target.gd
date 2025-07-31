@@ -48,3 +48,5 @@ func score_flower() -> void:
 			flower.get_node("Particles").emitting = true
 			flower.scoreable = false
 			Globals.unscored_flowers -= 1
+			if !Globals.game_over:
+				Globals.player.play_sound("Collect")

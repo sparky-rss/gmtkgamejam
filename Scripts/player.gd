@@ -23,6 +23,8 @@ var incoming_velocity : float = 0.0
 var exit_velocity : float
 
 func _ready() -> void:
+	SoundManager.init_sound_system()
+	play_sound("BGM")
 	Globals.player = self
 	player_sprite = get_node("Sprite2D")
 	player_sprite.animation = "flipRtoL"
@@ -50,7 +52,7 @@ func _physics_process(_delta: float) -> void:
 				exit_velocity = min(-150, incoming_velocity)
 			self.linear_velocity = Vector2(exit_velocity, -100)
 		return
-	if Globals.unscored_flowers <= 99 and !Globals.you_win and !Globals.game_over:
+	if Globals.unscored_flowers <= 0 and !Globals.you_win and !Globals.game_over:
 		Globals.you_win = true
 		var HUD_node = get_parent().get_node("HUD")
 		HUD_node.you_win()
@@ -154,3 +156,11 @@ func spawn_hornets() -> void:
 			var new_hornet: Node = Globals.hornet_scene.instantiate()
 			get_parent().add_child.call_deferred(new_hornet)
 			new_hornet.global_position = query.position
+
+func play_sound(sound : String) -> void:
+	var sound_manager : Node = get_parent().get_node("SoundManager")
+	sound_manager.get_node(sound).play()
+	
+func stop_sound(sound : String) -> void:
+	var sound_manager : Node = get_parent().get_node("SoundManager")
+	sound_manager.get_node(sound).stop()

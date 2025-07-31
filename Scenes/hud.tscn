@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://cl1ppq5evf8ug" path="res://Bitcount_Prop_Single/BitcountPropSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="2_bjfho"]
 
 [node name="HUD" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_fccik")
 
 [node name="FlowerCount" type="Label" parent="."]
@@ -152,6 +153,7 @@ text = "100"
 horizontal_alignment = 2
 
 [node name="GameTimer" type="Timer" parent="."]
+process_mode = 1
 wait_time = 300.0
 autostart = true
 
@@ -213,6 +215,135 @@ theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 36
 text = "Quit"
 
+[node name="MenuBackground" type="ColorRect" parent="."]
+process_mode = 3
+visible = false
+z_index = -1
+offset_right = 1165.0
+offset_bottom = 657.0
+mouse_filter = 2
+color = Color(0.471483, 0.471234, 0.212482, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 200.0
+offset_right = 1166.0
+offset_bottom = 653.0
+theme_override_constants/separation = 50
+
+[node name="MasterVolume" type="HSlider" parent="MenuBackground/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+scrollable = false
+
+[node name="MusicVolume" type="HSlider" parent="MenuBackground/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+scrollable = false
+
+[node name="SFXVolume" type="HSlider" parent="MenuBackground/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+scrollable = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuBackground"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 195.0
+offset_right = 492.0
+offset_bottom = 636.0
+theme_override_constants/separation = 18
+
+[node name="Label" type="Label" parent="MenuBackground/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "Master Volume"
+
+[node name="Label2" type="Label" parent="MenuBackground/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "Music Volume"
+
+[node name="Label3" type="Label" parent="MenuBackground/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "SFX Volume"
+
+[node name="QuitButton" type="Button" parent="MenuBackground"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.5
+offset_top = -92.0
+offset_right = -109.5
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+text = "Quit"
+
+[node name="ResumeButton" type="Button" parent="MenuBackground"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 45.5
+offset_top = -91.0
+offset_right = 116.5
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+text = "Resume"
+
 [connection signal="timeout" from="YouWin/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="YouLose/LossTimer" to="." method="_on_loss_timer_timeout"]
 [connection signal="timeout" from="TimeTaken/ButtonTimer" to="." method="_on_button_timer_timeout"]
@@ -220,3 +351,8 @@ text = "Quit"
 [connection signal="pressed" from="NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="MenuBackground/VBoxContainer/MasterVolume" to="." method="_on_master_volume_value_changed"]
+[connection signal="value_changed" from="MenuBackground/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="MenuBackground/VBoxContainer/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="pressed" from="MenuBackground/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuBackground/ResumeButton" to="." method="_on_resume_button_pressed"]

@@ -9,7 +9,7 @@ var disperse : bool = false
 var disperse_direction : Vector2
 
 func _process(_delta: float) -> void:
-	if Globals.player != null and Globals.global_timer != null and !Globals.game_over and !Globals.you_win:
+	if Globals.player != null and Globals.global_timer != null:
 		if !signals_connected:
 			Globals.player.teleport_left_to_right.connect(_left_to_right)
 			Globals.player.teleport_right_to_left.connect(_right_to_left)
@@ -17,8 +17,11 @@ func _process(_delta: float) -> void:
 		if disperse and hunt_aggression == 0:
 			position += disperse_direction
 		else:
-			position.x = (position.x * (.999 - hunt_aggression)) + (Globals.player.position.x * (.001 + hunt_aggression))
-			position.y = (position.y * .999 - hunt_aggression) + (Globals.player.position.y * .001 + hunt_aggression) + bumble
+			if !Globals.game_over and !Globals.you_win:
+				position.x = (position.x * (.999 - hunt_aggression)) + (Globals.player.position.x * (.001 + hunt_aggression))
+				position.y = (position.y * .999 - hunt_aggression) + (Globals.player.position.y * .001 + hunt_aggression) + bumble
+			else:
+				position.y = (position.y  + bumble)
 		if bumble_up:
 			bumble -= .05
 			if bumble <= -2:
@@ -56,8 +59,8 @@ func _on_hunt_zone_body_exited(body: Node2D) -> void:
 		hunt_aggression = 0.00
 
 func _on_sting_zone_body_entered(body: Node2D) -> void:
-	print("sting")
-	if body == Globals.player and !Globals.you_win:
+	if body == Globals.player and !Globals.you_win and !Globals.game_over:
+		Globals.player.play_sound("Aggro")
 		Globals.game_over = true
 		var HUD_node = get_parent().get_node("HUD")
 		HUD_node.you_lose("stung")
