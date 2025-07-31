@@ -13,11 +13,16 @@ config_version=5
 config/name="GMTKGameJam"
 run/main_scene="uid://d2f3w61s8ym8t"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="uid://flne8b5ixd1w"
 
 [autoload]
 
 Globals="*res://Scripts/Globals.gd"
 SoundManager="*res://Scripts/SoundManager.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [global_group]
 
