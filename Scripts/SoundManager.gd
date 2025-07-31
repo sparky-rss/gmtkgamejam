@@ -13,22 +13,22 @@ func init_sound_system() -> void:
 	music_bus = AudioServer.get_bus_index("Music")
 	sfx_bus = AudioServer.get_bus_index("Sfx")
 	set_master_volume(1)
-	set_music_volume(1)
+	set_music_volume(0.4)
 	set_sfx_volume(1)
 
-func set_master_volume(value = -1) -> void:
+func set_master_volume(value : float = -1.0) -> void:
 	master_volume = value
 	if value == -1:
 		value = get_master_volume()
 	AudioServer.set_bus_volume_db(master_bus, linear_to_db(value))
 	
-func set_music_volume(value = -1) -> void:
+func set_music_volume(value : float = -1.0) -> void:
 	music_volume = value
 	if value == -1:
 		value = get_music_volume()
 	AudioServer.set_bus_volume_db(music_bus, linear_to_db(value))
 	
-func set_sfx_volume(value = -1) -> void:
+func set_sfx_volume(value : float = -1.0) -> void:
 	sfx_volume = value
 	if value == -1:
 		value = get_sfx_volume()

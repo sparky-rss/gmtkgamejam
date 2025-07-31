@@ -23,7 +23,6 @@ var incoming_velocity : float = 0.0
 var exit_velocity : float
 
 func _ready() -> void:
-	SoundManager.init_sound_system()
 	play_sound("BGM")
 	Globals.player = self
 	player_sprite = get_node("Sprite2D")

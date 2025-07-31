@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbfks7fsotvud"]
+
+[ext_resource type="Script" uid="uid://c41ie1k7tbell" path="res://Scripts/node_2d.gd" id="1_28flt"]
+[ext_resource type="Texture2D" uid="uid://b7hc718jsrp5j" path="res://Images/HornetFrames.png" id="2_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://flne8b5ixd1w" path="res://Images/BeeIcon.png" id="3_ce3w2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n45e2"]
+atlas = ExtResource("2_1ehe0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_opfnp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n45e2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="CanvasLayer"]
+script = ExtResource("1_28flt")
+
+[node name="MenuBackground" type="ColorRect" parent="."]
+process_mode = 3
+z_index = -1
+offset_right = 1165.0
+offset_bottom = 657.0
+mouse_filter = 2
+color = Color(0.471483, 0.471234, 0.212482, 1)
+
+[node name="Label" type="RichTextLabel" parent="MenuBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -357.0
+offset_top = -191.0
+offset_right = 357.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Loop-Bee-Loop"
+horizontal_alignment = 1
+
+[node name="StartGame" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Start Game"
+
+[node name="Quit" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = 46.0
+offset_right = 20.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+
+[node name="Hornet" type="AnimatedSprite2D" parent="."]
+position = Vector2(940, 305)
+sprite_frames = SubResource("SpriteFrames_opfnp")
+
+[node name="Bee" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Bee"]
+position = Vector2(226, 305)
+texture = ExtResource("3_ce3w2")
+flip_h = true
+
+[node name="Marker2D" type="Marker2D" parent="Bee/Sprite2D"]
+position = Vector2(0, -100)
+
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
