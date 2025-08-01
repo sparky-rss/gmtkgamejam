@@ -62,8 +62,12 @@ func _on_how_to_play_pressed() -> void:
 
 
 func _on_credits_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/high_scores.tscn")
+	get_tree().change_scene_to_file("res://Scenes/credits.tscn")
 
 
 func _on_return_to_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+
+func _on_high_scores_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/high_scores.tscn")

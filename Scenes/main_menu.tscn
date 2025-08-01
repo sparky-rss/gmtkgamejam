@@ -215,5 +215,5 @@ texture = ExtResource("4_ce3w2")
 [connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="HowToPlay" to="." method="_on_how_to_play_pressed"]
 [connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="HighScores" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="HighScores" to="." method="_on_high_scores_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
