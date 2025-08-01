@@ -145,6 +145,7 @@ func _process(_delta: float) -> void:
 			var quit_button = get_node("Quit")
 			return_button.show()
 			quit_button.show()
+			Globals.save_current_status()
 			
 	
 	get_node("Hornet").position.y = (get_node("Hornet").position.y + bumble)

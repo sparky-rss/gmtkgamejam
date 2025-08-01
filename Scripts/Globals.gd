@@ -1,5 +1,9 @@
 extends Node
 
+var save_file_path = "res://Saves/"
+var save_file_name = "PlayerSave.tres"
+var PlayerSave : Resource
+
 var flower_scene : PackedScene = preload("res://Scenes/Flower.tscn")
 var hornet_scene : PackedScene = preload("res://Scenes/hornet.tscn")
 var unscored_flowers : int
@@ -12,6 +16,9 @@ var high_score_names : Array = ["BEE", "FLY", "BUG", "ANT", "NIT"]
 @export var player : Node
 @export var global_timer : Node
 @export var replacement_score : int = -1
+
+func _ready() -> void:
+	load_status()
 
 func start_next_level() -> void:
 	you_win = false
@@ -75,3 +82,26 @@ func show_high_scores():
 				temp_name_1 = temp_name_2
 	retry()
 			
+func save_current_status() -> void:
+	verify_save_directory(Globals.save_file_path)
+	var data = PlayerData.new()
+	data.save()
+	Globals.PlayerSave = data
+	save_data()
+
+func load_status() -> void:
+	verify_save_directory(Globals.save_file_path)
+	var data = PlayerData.new()
+	if ResourceLoader.exists(Globals.save_file_path + Globals.save_file_name):
+		data = load_data()
+		data.load()
+		Globals.PlayerSave = data
+
+func verify_save_directory(path : String) -> void:
+	DirAccess.make_dir_absolute(path)
+
+func save_data() -> void:
+	ResourceSaver.save(Globals.PlayerSave, Globals.save_file_path + Globals.save_file_name)
+	
+func load_data() -> PlayerData:
+	return ResourceLoader.load(Globals.save_file_path + Globals.save_file_name)
