@@ -103,7 +103,6 @@ one_shot = true
 [node name="GameTimer" type="Timer" parent="."]
 process_mode = 1
 wait_time = 180.0
-autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(0, 40)

@@ -42,7 +42,7 @@ func play_flower_animation(flower_sprite: Node) -> void:
 
 func score_flower() -> void:
 	for flower in scoring_flower:
-		if flower.scoreable == true:
+		if flower.scoreable == true and !Globals.game_over:
 			play_flower_animation(flower.get_node("AnimatedSprite2D"))
 			play_flower_animation(flower.left_flower.get_node("AnimatedSprite2D"))
 			play_flower_animation(flower.right_flower.get_node("AnimatedSprite2D"))

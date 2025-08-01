@@ -3,6 +3,8 @@ extends CanvasLayer
 func _ready() -> void:
 	get_node("HBoxContainer/Level").text = str("Level: ", Globals.level)
 	Globals.global_timer = get_node("GameTimer")
+	Globals.global_timer.wait_time = 30 * Globals.level + 30
+	Globals.global_timer.start()
 	get_node("MenuBackground/VBoxContainer/MasterVolume").value = SoundManager.master_volume
 	get_node("MenuBackground/VBoxContainer/MusicVolume").value = SoundManager.music_volume
 	get_node("MenuBackground/VBoxContainer/SFXVolume").value = SoundManager.sfx_volume

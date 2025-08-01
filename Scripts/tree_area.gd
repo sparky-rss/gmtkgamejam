@@ -1,9 +1,10 @@
 extends Area2D
 
-var flowers_to_grow : int = 100
+var flowers_to_grow : int
 var flowers_grown : int = 0
 
 func _ready() -> void:
+	flowers_to_grow = Globals.level * 20
 	while flowers_grown < flowers_to_grow:
 		var query := PhysicsPointQueryParameters2D.new()
 		query.collide_with_areas = true
