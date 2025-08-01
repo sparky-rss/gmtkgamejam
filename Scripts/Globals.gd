@@ -1,6 +1,6 @@
 extends Node
 
-var save_file_path = "res://Saves/"
+var save_file_path = "user://Saves/"
 var save_file_name = "PlayerSave.tres"
 var PlayerSave : Resource
 
