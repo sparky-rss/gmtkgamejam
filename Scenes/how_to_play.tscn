@@ -50,9 +50,10 @@ A: Move Left
 D: Move Right
 S: Flutter (press repeatedly to gain height)
 Space: Loop-de-Loop
+Esc: Pause, Volume Settings
 
 Goal:
-Loop-de-Loop around all the Flowers. 
+Loop-de-Loop around all the flowers. 
 Looping around more flowers at once scores more points.
 Avoid Hornets, and don't run out of time!"
 horizontal_alignment = 1

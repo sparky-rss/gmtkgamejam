@@ -116,3 +116,7 @@ func _on_game_timer_timeout() -> void:
 func _on_menu_button_pressed() -> void:
 	get_tree().paused = false
 	Globals.return_to_menu()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
