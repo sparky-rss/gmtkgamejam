@@ -39,18 +39,20 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -356.5
-offset_top = -258.5
+offset_top = -294.5
 offset_right = 357.5
-offset_bottom = 123.5
+offset_bottom = 305.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/mono_font_size = 0
+theme_override_font_sizes/bold_font_size = 0
 bbcode_enabled = true
-text = "[b]Art, Music, and Gameplay by:[/b]
+text = "[font_size=20][u]Art, Music, and Gameplay by:[/u]
 Ryan Siegel-Stechler
 https://sparky-rss.github.io/
 Made for the GMTK Game Jam 2025
 
-[b]Tools Used:[/b]
+[u]Tools Used:[/u]
 BandLab
 www.bandlab.com
 
@@ -60,7 +62,7 @@ https://www.piskelapp.com/p/create/sprite/
 Godot
 https://godotengine.org/
 
-[b]Font:[/b] 
+[u]Font:[/u] 
 Bitcount Prop Single (Google Fonts)
 Designed by Petr van Blokland"
 horizontal_alignment = 1
@@ -71,10 +73,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -99.0
-offset_top = 128.0
-offset_right = 100.0
-offset_bottom = 166.0
+offset_left = -130.0
+offset_top = 209.0
+offset_right = 132.0
+offset_bottom = 247.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
@@ -91,7 +93,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
-text = "Return to Menu"
+text = "Return to Main Menu"
 
 [node name="Quit" type="Button" parent="."]
 anchors_preset = 8
@@ -99,10 +101,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -27.0
-offset_top = 188.0
-offset_right = 29.0
-offset_bottom = 226.0
+offset_left = -96.5
+offset_top = 269.0
+offset_right = 99.5
+offset_bottom = 307.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
@@ -119,7 +121,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
-text = "Quit"
+text = "Quit to Desktop"
 
 [node name="Hornet" type="AnimatedSprite2D" parent="."]
 position = Vector2(940, 343)

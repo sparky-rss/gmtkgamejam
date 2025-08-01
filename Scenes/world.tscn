@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d2f3w61s8ym8t"]
+[gd_scene load_steps=26 format=3 uid="uid://d2f3w61s8ym8t"]
 
 [ext_resource type="Script" uid="uid://c6lapchphdrp" path="res://Scripts/player.gd" id="1_5a7ea"]
 [ext_resource type="Texture2D" uid="uid://b3hsqtrgy0ijp" path="res://Images/Background.png" id="1_go701"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dabvnjhq4hbwx" path="res://Scripts/target.gd" id="3_5ukr8"]
 [ext_resource type="Texture2D" uid="uid://4f4upkhdc2sp" path="res://Images/LoopTarget.png" id="3_8j60k"]
 [ext_resource type="Texture2D" uid="uid://6hv5pawj8oyn" path="res://Images/WingOption2.png" id="4_0fj1v"]
+[ext_resource type="PackedScene" uid="uid://c6nyjggvkhay2" path="res://Scenes/hornet.tscn" id="5_ikia7"]
 [ext_resource type="PackedScene" uid="uid://b8wf1pgjfvxpp" path="res://Scenes/hud.tscn" id="7_k7acu"]
 [ext_resource type="Script" uid="uid://hgunqw4notri" path="res://Scripts/tree_area.gd" id="7_o06y3"]
 [ext_resource type="PackedScene" uid="uid://bq2w5h0x5ehxm" path="res://Scenes/sound_manager.tscn" id="9_5v1tr"]
@@ -516,6 +517,9 @@ shape = SubResource("CircleShape2D_5v1tr")
 [node name="HUD" parent="." instance=ExtResource("7_k7acu")]
 
 [node name="SoundManager" parent="." instance=ExtResource("9_5v1tr")]
+
+[node name="Hornet" parent="." instance=ExtResource("5_ikia7")]
+position = Vector2(126, 0)
 
 [connection signal="animation_finished" from="Player/Sprite2D" to="Player" method="_on_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Player/LoopPoint/Area2D" to="Player/LoopPoint/Area2D" method="_on_area_entered"]

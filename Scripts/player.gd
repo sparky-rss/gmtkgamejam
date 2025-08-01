@@ -168,7 +168,6 @@ func spawn_hornets() -> void:
 		var result := get_world_2d().direct_space_state.intersect_point(query)
 		if result == []:
 			hornets_spawned += 1
-			print("hornet ",hornets_spawned," spawned at ",query.position)
 			var new_hornet: Node = Globals.hornet_scene.instantiate()
 			get_parent().add_child.call_deferred(new_hornet)
 			new_hornet.global_position = query.position

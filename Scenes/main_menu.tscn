@@ -187,7 +187,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
-text = "Quit"
+text = "Quit to Desktop"
 
 [node name="Hornet" type="AnimatedSprite2D" parent="."]
 position = Vector2(940, 343)

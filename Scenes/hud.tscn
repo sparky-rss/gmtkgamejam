@@ -135,32 +135,15 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -163.5
+offset_left = -36.0
 offset_top = -52.0
-offset_right = -36.5
+offset_right = 91.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_bjfho")
 theme_override_font_sizes/font_size = 36
-text = "Retry"
-
-[node name="QuitButton" type="Button" parent="."]
-visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 36.5
-offset_top = -52.0
-offset_right = 163.5
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_bjfho")
-theme_override_font_sizes/font_size = 36
-text = "Quit"
+text = "High Scores"
 
 [node name="MenuBackground" type="ColorRect" parent="."]
 process_mode = 3
@@ -242,9 +225,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -148.5
+offset_left = 139.5
 offset_top = -92.0
-offset_right = -109.5
+offset_right = 267.5
 offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -261,7 +244,35 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-text = "Quit"
+text = "Quit to Desktop"
+
+[node name="MenuButton" type="Button" parent="MenuBackground"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.5
+offset_top = -92.0
+offset_right = 81.5
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+text = "Quit to Main Menu"
 
 [node name="ResumeButton" type="Button" parent="MenuBackground"]
 layout_mode = 1
@@ -270,9 +281,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 45.5
+offset_left = -229.5
 offset_top = -91.0
-offset_right = 116.5
+offset_right = -158.5
 offset_bottom = -63.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -353,9 +364,9 @@ horizontal_alignment = 2
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="pressed" from="NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="MenuBackground/VBoxContainer/MasterVolume" to="." method="_on_master_volume_value_changed"]
 [connection signal="value_changed" from="MenuBackground/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="MenuBackground/VBoxContainer/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
 [connection signal="pressed" from="MenuBackground/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuBackground/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="MenuBackground/ResumeButton" to="." method="_on_resume_button_pressed"]

@@ -22,8 +22,10 @@ func _process(_delta: float) -> void:
 		get_tree().paused = true
 		var retry_node = get_node("MenuBackground/ResumeButton")
 		var quit_node = get_node("MenuBackground/QuitButton")
+		var menu_node = get_node("MenuBackground/MenuButton")
 		style_that_box(retry_node)
 		style_that_box(quit_node)
+		style_that_box(menu_node)
 	elif Input.is_action_just_pressed("Escape Menu") and get_node("MenuBackground").visible:
 		get_node("MenuBackground").hide()
 		get_tree().paused = false
@@ -70,14 +72,12 @@ func _on_loss_timer_timeout() -> void:
 	you_lose_node.text = str("[font_size=50]Game Over![/font_size]")
 	var flowers_pollinated_node = get_node("FlowersPollinated")
 	flowers_pollinated_node.show()
-	flowers_pollinated_node.text = str("[font_size=50]Flowers Pollinated: ",Globals.level * 100 - Globals.unscored_flowers,"\nFinal Score: ", Globals.score, "[/font_size]")
+	flowers_pollinated_node.text = str("[font_size=50]Final Score: ", Globals.score, "[/font_size]")
 	get_node("FlowersPollinated/RetryTimer").start()
 
 func _on_retry_timer_timeout() -> void:
 	var retry_node = get_node("RetryButton")
-	var quit_node = get_node("QuitButton")
 	style_that_box(retry_node)
-	style_that_box(quit_node)
 
 func style_that_box(node_to_style : Node) -> void:
 	var stylebox: StyleBox = node_to_style.get_theme_stylebox("normal")
@@ -87,10 +87,7 @@ func style_that_box(node_to_style : Node) -> void:
 	
 
 func _on_retry_button_pressed() -> void:
-	Globals.retry()
-
-func _on_quit_button_pressed() -> void:
-	get_tree().quit()
+	Globals.show_high_scores()
 
 
 func _on_master_volume_value_changed(value: float) -> void:
@@ -114,3 +111,8 @@ func _on_game_timer_timeout() -> void:
 	HUD_node.you_lose("timeout")
 	Globals.player.get_node("Sprite2D").flip_v = true
 	Globals.player.play_player_animation("dead", Globals.player.get_node("Sprite2D"))
+
+
+func _on_menu_button_pressed() -> void:
+	get_tree().paused = false
+	Globals.return_to_menu()
