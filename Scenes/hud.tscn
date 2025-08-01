@@ -7,30 +7,6 @@
 process_mode = 3
 script = ExtResource("1_fccik")
 
-[node name="FlowerCount" type="Label" parent="."]
-z_index = 1
-offset_left = 8.0
-offset_right = 279.0
-offset_bottom = 39.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_bjfho")
-theme_override_font_sizes/font_size = 32
-text = "Flowers Left: 100"
-
-[node name="Level" type="Label" parent="."]
-z_index = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -56.0
-offset_right = 56.0
-offset_bottom = 39.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_bjfho")
-theme_override_font_sizes/font_size = 32
-text = "Level: 1"
-
 [node name="YouWin" type="RichTextLabel" parent="."]
 visible = false
 z_index = 1
@@ -40,15 +16,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -94.0
+offset_left = -408.0
 offset_top = -121.0
-offset_right = 177.0
+offset_right = 392.0
 offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("2_bjfho")
 bbcode_enabled = true
 text = "Great Job!"
+horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="YouWin"]
 one_shot = true
@@ -80,7 +57,7 @@ one_shot = true
 [node name="TimeTaken" type="RichTextLabel" parent="."]
 visible = false
 z_index = 1
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(100, 200)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -89,7 +66,7 @@ anchor_bottom = 0.5
 offset_left = -302.0
 offset_top = 67.0
 offset_right = 328.0
-offset_bottom = 167.0
+offset_bottom = 267.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("2_bjfho")
@@ -103,7 +80,7 @@ one_shot = true
 [node name="FlowersPollinated" type="RichTextLabel" parent="."]
 visible = false
 z_index = 1
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(100, 200)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -112,7 +89,7 @@ anchor_bottom = 0.5
 offset_left = -302.0
 offset_top = 67.0
 offset_right = 328.0
-offset_bottom = 167.0
+offset_bottom = 267.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("2_bjfho")
@@ -123,38 +100,9 @@ horizontal_alignment = 1
 [node name="RetryTimer" type="Timer" parent="FlowersPollinated"]
 one_shot = true
 
-[node name="TimerLabel" type="Label" parent="."]
-z_index = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 257.0
-offset_right = 504.0
-offset_bottom = 39.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_bjfho")
-theme_override_font_sizes/font_size = 32
-text = "Time Remaning:"
-horizontal_alignment = 2
-
-[node name="TimeLeft" type="Label" parent="."]
-z_index = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -271.0
-offset_bottom = 39.0
-grow_horizontal = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_bjfho")
-theme_override_font_sizes/font_size = 32
-text = "100"
-horizontal_alignment = 2
-
 [node name="GameTimer" type="Timer" parent="."]
 process_mode = 1
-wait_time = 300.0
+wait_time = 180.0
 autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -344,10 +292,66 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 text = "Resume"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -512.0
+offset_right = 512.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/separation = 17
+
+[node name="Score" type="Label" parent="HBoxContainer"]
+z_index = 1
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 32
+text = "Score: 0"
+
+[node name="FlowerCount" type="Label" parent="HBoxContainer"]
+z_index = 1
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 32
+text = "Flowers Left: 100"
+
+[node name="Level" type="Label" parent="HBoxContainer"]
+z_index = 1
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 32
+text = "Level: 1"
+
+[node name="TimerLabel" type="Label" parent="HBoxContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 32
+text = "Time Remaning:"
+horizontal_alignment = 2
+
+[node name="TimeLeft" type="Label" parent="HBoxContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjfho")
+theme_override_font_sizes/font_size = 32
+text = "100"
+horizontal_alignment = 2
+
 [connection signal="timeout" from="YouWin/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="YouLose/LossTimer" to="." method="_on_loss_timer_timeout"]
 [connection signal="timeout" from="TimeTaken/ButtonTimer" to="." method="_on_button_timer_timeout"]
 [connection signal="timeout" from="FlowersPollinated/RetryTimer" to="." method="_on_retry_timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="pressed" from="NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

@@ -11,6 +11,9 @@ var max_vert_speed : int = 500
 var state : String
 var player_sprite : Node
 
+var wing_bumble_up : bool = true
+var wing_bumble : float = 0.0
+
 var looping : bool = false
 var loop_center : Vector2 = Vector2.ZERO
 var loop_angle : float = 0.0
@@ -57,6 +60,18 @@ func _physics_process(_delta: float) -> void:
 		HUD_node.you_win()
 			
 func _process(_delta):
+	
+	if !Globals.game_over:
+		get_node("Sprite2D/Wing").position += Vector2(-wing_bumble * .2,-wing_bumble * .2)
+		if wing_bumble_up:
+			wing_bumble -= .25
+			if wing_bumble <= -3:
+				wing_bumble_up = false
+		else:
+			wing_bumble += .25
+			if wing_bumble >= 3:
+				wing_bumble_up = true
+	
 	if Input.is_action_just_pressed("Loop") and state != "loop" and !Globals.game_over:
 		var state_to_return_to : String
 		if player_sprite.animation == "flipLtoR":
@@ -72,12 +87,14 @@ func _process(_delta):
 		if state == "going_right":
 			state = "turning_left"
 			play_player_animation("flipRtoL", player_sprite)
+			turn_wing(get_node("Sprite2D/Wing"), state)
 			
 	if Input.is_action_pressed("GoRight") and state != "loop" and !Globals.game_over:
 		self.apply_central_force(Vector2(10,0))
 		if state == "going_left":
 			state = "turning_right"
 			play_player_animation("flipLtoR", player_sprite)
+			turn_wing(get_node("Sprite2D/Wing"), state)
 	
 	if self.position.x > 3000:
 		self.position.x = -3000
@@ -163,3 +180,16 @@ func play_sound(sound : String) -> void:
 func stop_sound(sound : String) -> void:
 	var sound_manager : Node = get_parent().get_node("SoundManager")
 	sound_manager.get_node(sound).stop()
+
+func turn_wing(wing : Node, player_state : String) -> void:
+	var end_position
+	if player_state == "turning_right":
+		end_position = -11.0
+	else:
+		end_position = 11.0
+	for i in 10:
+		if !Globals.game_over:
+			wing.position.x = lerp(wing.position.x, end_position, 0.25)
+			await get_tree().create_timer(0.2).timeout
+	if state == player_state and !Globals.game_over:
+		wing.position.x = end_position

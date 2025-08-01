@@ -152,3 +152,9 @@ scale_amount_max = 2.0
 color = Color(0.956354, 0.634936, 0.766991, 1)
 hue_variation_min = -1.0
 hue_variation_max = 1.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -37.0
+offset_right = 21.0
+offset_bottom = -17.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d2f3w61s8ym8t"]
+[gd_scene load_steps=25 format=3 uid="uid://d2f3w61s8ym8t"]
 
 [ext_resource type="Script" uid="uid://c6lapchphdrp" path="res://Scripts/player.gd" id="1_5a7ea"]
 [ext_resource type="Texture2D" uid="uid://b3hsqtrgy0ijp" path="res://Images/Background.png" id="1_go701"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b6yaq37t5qit3" path="res://Images/Bee.png" id="2_5v1tr"]
 [ext_resource type="Script" uid="uid://dabvnjhq4hbwx" path="res://Scripts/target.gd" id="3_5ukr8"]
 [ext_resource type="Texture2D" uid="uid://4f4upkhdc2sp" path="res://Images/LoopTarget.png" id="3_8j60k"]
+[ext_resource type="Texture2D" uid="uid://6hv5pawj8oyn" path="res://Images/WingOption2.png" id="4_0fj1v"]
 [ext_resource type="PackedScene" uid="uid://b8wf1pgjfvxpp" path="res://Scenes/hud.tscn" id="7_k7acu"]
 [ext_resource type="Script" uid="uid://hgunqw4notri" path="res://Scripts/tree_area.gd" id="7_o06y3"]
 [ext_resource type="PackedScene" uid="uid://bq2w5h0x5ehxm" path="res://Scenes/sound_manager.tscn" id="9_5v1tr"]
@@ -138,6 +139,11 @@ script = ExtResource("1_5a7ea")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_5v1tr")
 animation = &"dead"
+
+[node name="Wing" type="Sprite2D" parent="Player/Sprite2D"]
+z_index = -1
+position = Vector2(11, -11)
+texture = ExtResource("4_0fj1v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, -1)

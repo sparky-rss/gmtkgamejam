@@ -2,6 +2,7 @@ extends Area2D
 
 var targeted_flower : Array
 var scoring_flower : Array
+var multiplier : int = 1
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.scoreable:
@@ -47,6 +48,10 @@ func score_flower() -> void:
 			play_flower_animation(flower.right_flower.get_node("AnimatedSprite2D"))
 			flower.get_node("Particles").emitting = true
 			flower.scoreable = false
+			Globals.score += flower.points * multiplier
+			flower.display_score(multiplier)
+			multiplier += 1
 			Globals.unscored_flowers -= 1
 			if !Globals.game_over:
 				Globals.player.play_sound("Collect")
+	multiplier = 1

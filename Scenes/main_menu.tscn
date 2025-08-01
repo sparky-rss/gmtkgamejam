@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbfks7fsotvud"]
+[gd_scene load_steps=7 format=3 uid="uid://dbfks7fsotvud"]
 
 [ext_resource type="Script" uid="uid://c41ie1k7tbell" path="res://Scripts/node_2d.gd" id="1_28flt"]
 [ext_resource type="Texture2D" uid="uid://b7hc718jsrp5j" path="res://Images/HornetFrames.png" id="2_1ehe0"]
 [ext_resource type="Texture2D" uid="uid://flne8b5ixd1w" path="res://Images/BeeIcon.png" id="3_ce3w2"]
+[ext_resource type="Texture2D" uid="uid://6hv5pawj8oyn" path="res://Images/WingOption2.png" id="4_ce3w2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n45e2"]
 atlas = ExtResource("2_1ehe0")
@@ -104,19 +105,27 @@ theme_override_font_sizes/font_size = 25
 text = "Quit"
 
 [node name="Hornet" type="AnimatedSprite2D" parent="."]
-position = Vector2(940, 305)
+position = Vector2(940, 343)
 sprite_frames = SubResource("SpriteFrames_opfnp")
 
-[node name="Bee" type="RigidBody2D" parent="."]
-gravity_scale = 0.0
+[node name="WingOption3" type="Sprite2D" parent="Hornet"]
+z_index = -1
+position = Vector2(3, -11)
+texture = ExtResource("4_ce3w2")
 
-[node name="Sprite2D" type="Sprite2D" parent="Bee"]
+[node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(226, 305)
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
+z_index = 1
+position = Vector2(0, 100)
 texture = ExtResource("3_ce3w2")
 flip_h = true
 
-[node name="Marker2D" type="Marker2D" parent="Bee/Sprite2D"]
-position = Vector2(0, -100)
+[node name="WingOption2" type="Sprite2D" parent="Marker2D/Sprite2D"]
+z_index = -1
+position = Vector2(-11, -11)
+texture = ExtResource("4_ce3w2")
 
 [connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

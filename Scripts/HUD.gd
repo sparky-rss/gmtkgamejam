@@ -1,15 +1,20 @@
 extends CanvasLayer
 
 func _ready() -> void:
-	get_node("Level").text = str("Level: ", Globals.level)
+	get_node("HBoxContainer/Level").text = str("Level: ", Globals.level)
 	Globals.global_timer = get_node("GameTimer")
 	get_node("MenuBackground/VBoxContainer/MasterVolume").value = SoundManager.master_volume
 	get_node("MenuBackground/VBoxContainer/MusicVolume").value = SoundManager.music_volume
 	get_node("MenuBackground/VBoxContainer/SFXVolume").value = SoundManager.sfx_volume
 
 func _process(_delta: float) -> void:
-	get_node("FlowerCount").text = str("Flowers Left: ", Globals.unscored_flowers)
-	get_node("TimeLeft").text = str("%0.0f" % get_node("GameTimer").time_left)
+	get_node("HBoxContainer/FlowerCount").text = str("Flowers Left: ", Globals.unscored_flowers)
+	get_node("HBoxContainer/TimeLeft").text = str("%0.0f" % get_node("GameTimer").time_left)
+	if get_node("GameTimer").time_left <= 20.5:
+		var red = Color(1.0,0.0,0.0,1.0)
+		get_node("HBoxContainer/TimerLabel").set("theme_override_colors/font_color",red)
+		get_node("HBoxContainer/TimeLeft").set("theme_override_colors/font_color",red)
+	get_node("HBoxContainer/Score").text = str("Score: ", Globals.score)
 	if Input.is_action_just_pressed("Escape Menu") and !get_node("MenuBackground").visible:
 		get_node("MenuBackground").show()
 		get_tree().paused = true
@@ -28,7 +33,7 @@ func you_win() -> void:
 	get_node("GameTimer").paused = true
 	var you_win_node = get_node("YouWin")
 	you_win_node.show()
-	you_win_node.text = str("[font_size=50][rainbow freq=.2 sat=.8 val=.8][wave amp=20 freq=20]You Win![/wave][/rainbow][/font_size]")
+	you_win_node.text = str("[font_size=50][rainbow freq=.2 sat=.8 val=.8][wave amp=20 freq=20]Level Complete![/wave][/rainbow][/font_size]")
 	get_node("YouWin/Timer").start()
 
 func you_lose(cause : String) -> void:
@@ -46,7 +51,9 @@ func you_lose(cause : String) -> void:
 func _on_timer_timeout() -> void:
 	var time_taken_node = get_node("TimeTaken")
 	time_taken_node.show()
-	time_taken_node.text = str("[font_size=50][rainbow freq=.2 sat=.8 val=.8][wave amp=20 freq=20]Time Remaining: ",str("%0.0f" % get_node("GameTimer").time_left),"[/wave][/rainbow][/font_size]")
+	var bonus_score = int(get_node("GameTimer").time_left) * 10
+	Globals.score += bonus_score
+	time_taken_node.text = str("[font_size=50][rainbow freq=.2 sat=.8 val=.8][wave amp=20 freq=20]Time Remaining: ",str("%0.0f" % get_node("GameTimer").time_left),"\nBonus Score: ",bonus_score,"[/wave][/rainbow][/font_size]")
 	get_node("TimeTaken/ButtonTimer").start()
 	
 func _on_button_timer_timeout() -> void:
@@ -61,7 +68,7 @@ func _on_loss_timer_timeout() -> void:
 	you_lose_node.text = str("[font_size=50]Game Over![/font_size]")
 	var flowers_pollinated_node = get_node("FlowersPollinated")
 	flowers_pollinated_node.show()
-	flowers_pollinated_node.text = str("[font_size=50]Flowers Pollinated: ",Globals.level * 100 - Globals.unscored_flowers,"[/font_size]")
+	flowers_pollinated_node.text = str("[font_size=50]Flowers Pollinated: ",Globals.level * 100 - Globals.unscored_flowers,"\nFinal Score: ", Globals.score, "[/font_size]")
 	get_node("FlowersPollinated/RetryTimer").start()
 
 func _on_retry_timer_timeout() -> void:
@@ -97,3 +104,11 @@ func _on_sfx_volume_value_changed(value: float) -> void:
 func _on_resume_button_pressed() -> void:
 	get_node("MenuBackground").hide()
 	get_tree().paused = false
+
+
+func _on_game_timer_timeout() -> void:
+	Globals.game_over = true
+	var HUD_node = get_parent().get_node("HUD")
+	HUD_node.you_lose("timeout")
+	Globals.player.get_node("Sprite2D").flip_v = true
+	Globals.player.play_player_animation("dead", Globals.player.get_node("Sprite2D"))

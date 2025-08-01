@@ -6,6 +6,7 @@ var unscored_flowers : int
 var you_win : bool = false
 var game_over : bool = false
 var level : int = 1
+var score : int = 0
 @export var player : Node
 @export var global_timer : Node
 
@@ -17,4 +18,5 @@ func start_next_level() -> void:
 func retry() -> void:
 	game_over = false
 	level = 1
+	score = 0
 	get_tree().change_scene_to_file("res://Scenes/world.tscn")

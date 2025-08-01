@@ -1,17 +1,9 @@
 extends CanvasLayer
 
 var bumble_up : bool = true
+var wing_bumble_up : bool = true
 var bumble : float = 0
-var looping : bool = false
-var loop_center : Vector2 = Vector2.ZERO
-var loop_angle : float = 0.0
-var loop_direction : int = 1
-var loop_steps : int = 50
-var loop_step : int = 0
-var start_offset : Vector2 = Vector2.ZERO
-var loop_duration : float = 1.0
-var incoming_velocity : float = 0.0
-var exit_velocity : float
+var wing_bumble : float = 0
 
 func _ready() -> void:
 	SoundManager.init_sound_system()
@@ -24,6 +16,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	get_node("Hornet").position.y = (get_node("Hornet").position.y + bumble)
+	get_node("Hornet/WingOption3").position += Vector2(-wing_bumble * .1,-wing_bumble * .2)
+	get_node("Marker2D/Sprite2D/WingOption2").position += Vector2(-wing_bumble * .2,-wing_bumble * .2)
 	if bumble_up:
 		bumble -= .05
 		if bumble <= -2:
@@ -32,8 +26,16 @@ func _process(_delta: float) -> void:
 		bumble += .05
 		if bumble >= 2:
 			bumble_up = true
-	
-	#TODO: Get bee to do loop-de-loops!
+			
+	if wing_bumble_up:
+		wing_bumble -= .25
+		if wing_bumble <= -3:
+			wing_bumble_up = false
+	else:
+		wing_bumble += .25
+		if wing_bumble >= 3:
+			wing_bumble_up = true
+	get_node("Marker2D").rotation -= 0.01
 	
 func _on_quit_pressed() -> void:
 	get_tree().quit()
